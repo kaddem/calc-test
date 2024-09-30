@@ -86,6 +86,10 @@ func isRomanNum(str string) bool {
 }
 
 func printResult(result int, isRoman bool) {
+	if isRoman && result <= 0 {
+		panic(errorsMap["rome"])
+	}
+
 	if isRoman {
 		fmt.Println(convertToRoman(result))
 		return
@@ -142,20 +146,12 @@ func main() {
 	switch operands[1] {
 	case "-":
 		result = num1 - num2
-
-		if isRomanNum(operands[0]) && result < 0 {
-			panic(errorsMap["rome"])
-		}
 	case "+":
 		result = num1 + num2
 	case "*":
 		result = num1 * num2
 	case "/":
 		result = num1 / num2
-
-		if isRomanNum(operands[0]) && result == 0 {
-			panic(errorsMap["rome"])
-		}
 	default:
 		panic(errorsMap["math"])
 	}
